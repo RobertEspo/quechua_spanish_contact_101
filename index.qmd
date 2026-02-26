@@ -20,17 +20,22 @@ knitr::opts_chunk$set(
   out.width = "100%", 
   fig.retina = 2, 
   dpi = 300,
+  echo = F,
   message = F, 
   warning = F
   )
 
 set.seed(20250223)
 
+# load libs 
 library("tidyverse")
 library("here")
 library("knitr")
 library("flextable")
 library("rworldmap")
+library("scales")
+library("ds4ling")
+library("ggtext")
 
 theme_psllt <- function(...) {
   list(
@@ -48,44 +53,51 @@ theme_set(theme_grey(base_size = 30))
 ```
 
 ```{r}
-#| label: data
+#| message: false
+#| warning: false
 #| include: false
-
-# create df for quechua-speaking populations based on Escudero (2011)
-
-quechua_pop <- data.frame(
+### Incan Empire map ###
+incan_empire <- data.frame(
   country = c("CUB","PRI","CRI","ECU","HND","NIC","PAN",
               "ARG","BOL","CHL","COL","DOM","SLV","GTM",
               "MEX","PRY","PER","URY","VEN"),
+  inca = c("no","no","no","yes","no","no","no",
+              "yes","yes","yes","yes","no","no","no",
+              "no","no","yes","no","no")
+)
+
+incan_empire_map_object <- joinCountryData2Map(incan_empire, 
+                                              joinCode = "ISO3", 
+                                              nameJoinColumn = "country")
+
+# numbers based on census data, Adeelar 1991, Adeelar 2000
+# sourced from https://en.wikipedia.org/wiki/Quechuan_languages
+
+### Quechua population map ###
+quechua_pop <- data.frame(
+  country = c("CUB","PRI","CRI",
+              "ECU","HND","NIC","PAN",
+              "ARG",
+              "BOL",
+              "CHL",
+              "COL","DOM","SLV","GTM","MEX","PRY",
+              "PER","URY","VEN"),
   quechua = c("no","no","no","yes","no","no","no",
               "yes","yes","yes","yes","no","no","no",
               "no","no","yes","no","no"),
-  num_speakers = c(NA,NA,NA,1500000,NA,NA,NA,
-                                  1000000,4700000,9000,23000,NA,NA,NA,
-                                  NA,NA,5500000,NA,NA)
+  num_speakers = c(NA,NA,NA,
+                   2300000,NA,NA,NA,
+                   900000,
+                   2100000,
+                   9000,
+                   10000,NA,NA,NA,NA,NA,
+                   3800000,NA,NA)
 )
 
 #create map object
-quechua_pop_map_object <- joinCountryData2Map(quechua_pop, joinCode = "ISO3", nameJoinColumn = "country")
-
-# create map & export to png
-png(
-  here("assets", "quechua_speakers_map.png"),
-  width = 2000,
-  height = 1200,
-  res = 300
-)
-
-mapCountryData(
-  quechua_pop_map_object,
-  nameColumnToPlot = "num_speakers",
-  mapTitle = "Number of Quechua speakers",
-  xlim = c(-80, -55),   # longitude
-  ylim = c(-55, 20)     # latitude
-)
-
-dev.off()
-
+quechua_pop_map_object <- joinCountryData2Map(quechua_pop, 
+                                              joinCode = "ISO3", 
+                                              nameJoinColumn = "country")
 ```
 
 # The Basics {.transition}
@@ -118,13 +130,348 @@ Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
 
 # History of Quechua-Spanish Contact {.transition}
 
-## Number of Quechua Speakers
+##
 
-![](assets/quechua_speakers_map.png)
+:::: {.columns}
 
-# General contact phonema {.transition}
+::: {.column width="50%"}
+
+```{r}
+mapCountryData(
+  incan_empire_map_object,
+  nameColumnToPlot = "inca",
+  mapTitle = "Extension of Incan Empire",
+  xlim = c(-80, -55),   # longitude
+  ylim = c(-55, 20),     # latitude
+  catMethod = "categorical",
+  colourPalette = c("white","lightblue"),
+  addLegend = FALSE
+)
+
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+# visualize map
+mapCountryData(
+  quechua_pop_map_object,
+  nameColumnToPlot = "num_speakers",
+  mapTitle = "Number of Quechua speakers",
+  xlim = c(-80, -55),   # longitude
+  ylim = c(-55, 20)     # latitude
+)
+
+```
+
+:::
+
+::::
+
+- [Incans]{.emph} conquered much of western South America from the [13th to 16th century]{.emph}
+- [Quechua became lingua franca]{.emph}, in contact with many languages, among them [Aymara]{.emph}
+- Incan elites spoke [extinct Puquina]{.emph} language
+
+## Spanish Conquest in Western South America
+
+```{r}
+
+# ---- Quechua-Spanish Contact History ----
+lingua_franca_df <- tribble(
+  ~start_year, ~end_year, ~label, ~y_bottom, ~y_top,
+  1438,        1650,      "Quechua lingua franca", 0.7, 0.75,
+  1532,        1800,      "Minor Spanish–Quechua bilingualism", 0.62, 0.67,
+  1800,        2009,      "Societal Spanish–Quechua bilingualism", 0.7, 0.75,
+  1900, 2009, "Emergence of Andean Spanish", 0.62, 0.67
+) %>%
+  mutate(
+    start_date = as.Date(paste0(start_year, "-01-01")),
+    end_date   = as.Date(paste0(end_year, "-12-31"))
+  )
+
+# ---- Periods ----
+periods_df <- tribble(
+  ~period,               ~start_year, ~end_year, 
+  "Incan Empire",        1438,        1533,
+  "Spanish Conquest",    1532,        1572,
+  "Colonial Period",       1572,        1820,
+  "Modern Era",          1820,        2000
+) %>%
+  mutate(
+    start_date = as.Date(paste0(start_year, "-01-01")),
+    end_date   = as.Date(paste0(end_year, "-12-31"))
+  )
+
+# ---- Events (spots) ----
+spots_df <- tribble(
+  ~event,                  ~year,  ~description,
+  "Spanish arrival",  1532,  "Spanish arrive in Incan Empire",
+  "Urban walls",            1600,  "Walls around main Spanish cities",
+  "Language policy change", 1650,  "Spanish king mandates hispanization",
+  "Spanish control ends",   1820,  "Political/social control ends"
+) %>%
+  mutate(
+    spot_date = as.Date(paste0(year, "-01-01")),
+    # stagger y positions for segments
+    label_y = c(1.25, 1.25, 1.25, 1.25),  # vertical position for label
+    point_y = 1  # dot inside the bar
+  )
+
+# ---- Plot ----
+ggplot() +
+  # Lingua franca bar below main bars
+  geom_rect(data = lingua_franca_df,
+            aes(xmin = start_date, xmax = end_date,
+                ymin = y_bottom, ymax = y_top),
+            fill = "lightblue", alpha = 0.5) +
+  geom_text(data = lingua_franca_df,
+            aes(x = start_date + (end_date - start_date)/2,
+                y = (y_bottom + y_top)/2, label = label),
+            size = 3.5, fontface = "italic") +
+  # Main period bars
+  geom_rect(data = periods_df,
+            aes(xmin = start_date, xmax = end_date,
+                ymin = 0.8, ymax = 1.2,
+                fill = period),
+            color = "black", alpha = 0.5) +
+  # Labels inside main bars
+  geom_text(data = periods_df,
+            aes(x = start_date + (end_date - start_date)/2,
+                y = 1, label = period),
+            color = "black", size = 4, fontface = "bold",
+            angle = 45) +
+  # Event points inside the bars
+  geom_point(data = spots_df %>% filter(event != "Quechua lingua franca"),
+             aes(x = spot_date, y = point_y),
+             color = "red", size = 3) +
+  # Segments connecting points to labels
+  geom_segment(data = spots_df %>% filter(event != "Quechua lingua franca"),
+               aes(x = spot_date, xend = spot_date,
+                   y = point_y, yend = label_y),
+               linetype = "dashed", color = "gray30") +
+  # Event labels above the line
+  geom_text(data = spots_df %>% filter(event != "Quechua lingua franca"),
+            aes(x = spot_date, y = label_y, label = description),
+            angle = 25, hjust = 0, size = 4) +
+  # X-axis breaks
+  scale_x_date(date_breaks = "50 years", date_labels = "%Y") +
+  coord_cartesian(ylim = c(0.65, 1.6)) +
+  labs(title = NULL,
+       x = NULL, y = NULL) +
+  theme_minimal() +
+  ds4ling::ds4ling_bw_theme(base_size = 12) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none",
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+::: notes
+Quechua = official langues of Incas.
+Incan aristocracy used Puquina, now extinct.
+Prolonged & intense contact of Quechua, Puquina, and Aymara from 13th to 16th century.
+
+During colonial period, Quehcua used as lingua franca.
+Of the Spanish, merchants, administrators, and clergymen learned Quechua.
+Of the Andeans, children of indigenous elite, clergymen, & escribanos (helpers) learned Spanish.
+
+Walls constructed in early 17th century to separate Spaniards & indigenous -- very restricted contact.
+
+Andean Spanish is 20th century phenomenon.
+:::
+
+## Modern Language Policies
+
+```{r}
+# ---- Modern language policy events ----
+policy_events <- tribble(
+  ~country,   ~year, ~policy,
+  "Colombia", 1991,  "Spanish official; indigenous langs official regionally",
+  "Peru",     1993,  "Right to use Spanish or indigenous languages in official gov't proceedings",
+  "Chile",    1993,  "Chilean Indigenous Law: recognition of Amerindian languages",
+  "Ecuador",  2008,  "Preservation of indigenous languages",
+  "Bolivia",  2009,  "Spanish & all indigenous languages official",
+  "Argentina", 2000, "No reference to indigenous languages"
+) %>%
+  mutate(event_date = as.Date(paste0(year, "-01-01")))
+
+# ---- Plot ----
+ggplot(policy_events, aes(x = event_date, y = country)) +
+  geom_point(data = subset(policy_events, country != "Argentina"),
+             color = "red", size = 4) +  
+  geom_text(aes(label = str_wrap(policy, width = 40)),
+            hjust = -0.05, vjust = 0.5, size = 4) +
+  scale_x_date(
+    date_breaks = "5 years",
+    date_labels = "%Y",
+    limits = as.Date(c("1990-01-01", "2015-12-31"))
+  ) +
+  scale_y_discrete(limits = rev(c("Colombia","Peru","Chile","Ecuador","Bolivia","Argentina"))) +
+  labs(x = NULL, y = NULL) +
+  ds4ling::ds4ling_bw_theme(base_size = 12) +
+  theme(
+    axis.text.y = element_text(face = "bold"),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.major = element_blank(), panel.grid.minor = element_blank()
+  )
+```
+
+::: notes
+Indigenous languages are being recognized across LA, but of course there's still a lot of stigma.
+Despite the gov't language policies to support them, there is still a growing shift from Quechua to Spanish, especially as Quechua speakers move to urban centers.
+:::
+
+## Andean Spanish Outside of the Andes
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](assets/quechua_in_usa.bmp){ width=80% }
+
+:::
+
+::: {.column width="50%"}
+
+- Large Quechua-speaking population in Queens & Brooklyn in NYC
+- Large Quechua-speaking population in Patterson, NJ
+  - Largest Peruvian percentage in the U.S. per capita!
+  
+:::
+::::
+
+::: footer
+https://languagemap.nyc/
+
+https://web.archive.org/web/20150201040607/http://www.utsandiego.com/news/2011/may/28/some-ny-immigrants-cite-lack-of-spanish-as-barrier/
+
+@paerregaard2008peruvians
+:::
+
+::: notes
+Quechua varieties are spoken in Brooklyn, Queens, and for some reason concentrated in Patterson, NJ.
+:::
+
+## Let's listen to two varieties
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+{{< youtube K2iYeGTwcU8 >}}
+
+:::
+
+::: {.column width="50%"}
+
+{{< youtube b_DtKXDXLFY >}}
+
+:::
+::::
+
+- Anything that catches your attention?
+
+## {background-iframe="https://ich.unesco.org/doc/src/00120-EN.pdf" background-interactive=TRUE}
+
+# General Contact Phonema {.transition}
+
+## Andean Spanish
+
+::: {.fragment}
+- a [Spanish variety]{.emph} primarily spoken in the [Andean region]{.emph} of various countries spoken by...
+:::
+
+::: {.fragment}
+    - monolingual speakers
+    
+:::
+
+::: {.fragment}
+    - 2L1 bilinguals 
+
+:::
+
+::: {.fragment}
+    - L1 Quechua or L1 Aymara L2 Spanish speakers
+
+:::
+
+:::{.fragment}
+- daily contact with [L2 Andean Spanish]{.emph} speakers
+:::
+
+:::{.fragment}
+- contact with [non-Andean varieties]{.emph} of Spanish
+:::
+
+## Lexical Borrowings
+
+Everything before this slide is solid enough. Everything after this slide is notes/drafts.
+
+Here we'll put a bunch of lexical borrowings have them determine what domains of life they mostly come from. We'll make reference to @van2016loan @coetsem2000general. Borrowing vs imposition.
+
+## Grammatical Borrowings
+
+Here we'll put borrowing of suffixes.
+
+## Phonological/Phonetic Features
+
+Here we'll put phonological inventories of Spanish & Quechua and determine where transfer may occur. We'll make reference to @van2016loan @coetsem2000general. Borrowing vs imposition.
+
+## Morphosyntactic Features
+
+Present example sentences for conditional in protasis/apodosis of conditional sentences
+Skip omission of third person object clitics.
+Animate leísmo
+Frequent use of diminutive on nouns, adj, gerunds, numerals, adverbs, pronouns. use for modesty, deferential courtesy.
+redundant direct object clitics with nominal referent.
+presence of possesssive determiner with genitive phrase.
+
+## Patterns of Use
+
+favors adverbials and objects in preverbal position.
+adverbials and prepositional phrases tend to appear utterance-initial.
+frequent use of analytical verbal expressions
+  hacer + infinitive = causative
+  saber + infinitive = habitual aspect
+  dar + gerund = benefactive
+  venir + gerund = perfective
+dequeísmo
 
 # Focus in Contact {.transition}
+
+## Pasto, Colombia
+
+Not sure how to incorporate this yet, but so they get an idea of what we're working with in terms of what it sounds like.
+
+{{< youtube udRn6DTwEIk >}}
+
+## Focus & Prosody/Intonation in Quechua
+
+## Focus & Prosody/Intonation in Spanish
+
+## Participants
+
+## Data set
+
+## Measurements
+
+## Hypotheses
+
+## Results
+
+## Tonal peaks in contrastive vs broad focus
+
+## Peak alignment in contrastive focus
+
+## Comparison of focus strategies
 
 # Morphosyntax in Contact {.transition}
 
@@ -135,12 +482,12 @@ Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
 
 
 <table style="border-collapse: collapse; border: none;">
-  
+
   <tr>
     <td style="text-align: right; padding-right: 10px;">
-      <a href="mailto:ec1310@scarletmail.rutgers.edu">{{< fa solid envelope >}}</a>
+      <a href="https://www.jvcasillas.com/quarto-rutgers-theme/">{{< fa solid link >}}</a>
     </td>
-    <td>ec1310@scarletmail.rutgers.edu</td>
+    <td>jvcasillas.com/quarto-rutgers-theme</td>
   </tr>
   
   <tr>
@@ -148,13 +495,6 @@ Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
       <a href="mailto:rme70@scarletmail.rutgers.edu">{{< fa solid envelope >}}</a>
     </td>
     <td>rme70@scarletmail.rutgers.edu</td>
-  </tr>
-
-  <tr>
-    <td style="text-align: right; padding-right: 10px;">
-      <a href="https://www.jvcasillas.com/quarto-rutgers-theme/">{{< fa solid link >}}</a>
-    </td>
-    <td>jvcasillas.com/quarto-rutgers-theme</td>
   </tr>
 
   <tr>
@@ -173,9 +513,9 @@ Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
   
   <tr>
     <td style="text-align: right; padding-right: 10px;">
-      <a href="https://github.com/emcorregidor">{{< fa brands github >}}</a>
+      <a href="mailto:ec1310@scarletmail.rutgers.edu">{{< fa solid envelope >}}</a>
     </td>
-    <td>\@emcorregidor</td>
+    <td>ec1310@scarletmail.rutgers.edu</td>
   </tr>
   
   <tr>
@@ -183,6 +523,13 @@ Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
       <a href="emcorregidor.github.io/">{{< fa solid link >}}</a>
     </td>
     <td>emcorregidor.github.io/</td>
+  </tr>
+  
+  <tr>
+    <td style="text-align: right; padding-right: 10px;">
+      <a href="https://github.com/emcorregidor">{{< fa brands github >}}</a>
+    </td>
+    <td>\@emcorregidor</td>
   </tr>
   
 </table>
