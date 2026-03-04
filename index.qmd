@@ -221,7 +221,7 @@ spots_df <- tribble(
 
 # ---- Plot ----
 ggplot() +
-  # Lingua franca bar below main bars
+  # Lang history bar below main bars
   geom_rect(data = lingua_franca_df,
             aes(xmin = start_date, xmax = end_date,
                 ymin = y_bottom, ymax = y_top),
@@ -411,19 +411,190 @@ Quechua varieties are spoken in Brooklyn, Queens, and for some reason concentrat
 - contact with [non-Andean varieties]{.emph} of Spanish
 :::
 
-## Lexical Borrowings
+## Let's review some terminology...
 
-Everything before this slide is solid enough. Everything after this slide is notes/drafts.
+- Van Coestem [-@coetsem2000general; -@van2016loan] proposes a psycholinguistic model for borrowing...
 
-Here we'll put a bunch of lexical borrowings have them determine what domains of life they mostly come from. We'll make reference to @van2016loan @coetsem2000general. Borrowing vs imposition.
+::: {.fragment}
+In groups, define the following terms and be prepared to share a [specific contact example]{.emph}
+:::
 
-## Grammatical Borrowings
+::: {.fragment}
+- Source language
+- Recipient language
+- Agentivity
+- Imposition
+- Borrowing
+:::
 
-Here we'll put borrowing of suffixes.
+## The Lexicon
 
-## Phonological/Phonetic Features
+```{r}
+data.frame(
+  matrix(
+    c(
+      "huayco - mud slide",
+      "palta - avocado",
+      "ñano - male child",
+      "cuy - guinea pig",
+      "pisco - grape brandy",
+      "zapallo - squash",
+      
+      "condor - condor",
+      "caracha - skin infection",
+      "quinua - quinoa",
+      "tambo - small inn",
+      "ojota - sandal",
+      "choclo - corn",
+      
+      "pampa - plateau",
+      "guagua - infant",
+      "charqui - dried meat",
+      "puna - high altitudes",
+      "alpaca - alpaca",
+      "carpa - tent",
+      
+      "canchita - popcorn",
+      "soroche - altitude sickness",
+      "pucho - cigarette butt",
+      "papa - potato",
+      "caucho - rubber",
+      "concho - sediment",
+      
+      "quena - quena",
+      "chancar - to flatten",
+      "cancha - large outdoor space",
+      "calato - naked",
+      "puma - puma",
+      "chakra - ranch"
+    ),
+    nrow = 5,
+    ncol = 6,
+    byrow = TRUE
+  ),
+  stringsAsFactors = FALSE
+) %>%
+  kable(col.names = NULL)
 
-Here we'll put phonological inventories of Spanish & Quechua and determine where transfer may occur. We'll make reference to @van2016loan @coetsem2000general. Borrowing vs imposition.
+```
+
+::: note
+This comes from @escobar2011spanish
+:::
+
+## The Segmental Inventory of Cusco Quechua
+
+```{r}
+consonant_inventory <- data.frame(
+  Category = c(
+    "Nasal",
+    "Stop/Affricate (plain)",
+    "Stop/Affricate (aspirated)",
+    "Stop/Affricate (ejective)",
+    "Fricative",
+    "Semivowel",
+    "Liquid (lateral)",
+    "Liquid (rhotic)"
+  ),
+  Bilabial = c(
+    "m",
+    "p",
+    "pʰ",
+    "pʼ",
+    "",
+    "",
+    "",
+    ""
+  ),
+  Alveolar = c(
+    "n",
+    "t",
+    "tʰ",
+    "tʼ",
+    "s",
+    "",
+    "l",
+    "ɾ"
+  ),
+  `Post-alv./Palatal` = c(
+    "ɲ",
+    "tʃ",
+    "tʃʰ",
+    "tʃʼ",
+    "ʃ",
+    "j",
+    "ʎ",
+    ""
+  ),
+  Velar = c(
+    "",
+    "k",
+    "kʰ",
+    "kʼ",
+    "",
+    "w",
+    "",
+    ""
+  ),
+  Uvular = c(
+    "",
+    "q",
+    "qʰ",
+    "qʼ",
+    "",
+    "",
+    "",
+    ""
+  ),
+  Glottal = c(
+    "",
+    "",
+    "",
+    "",
+    "h",
+    "",
+    "",
+    ""
+  ),
+  stringsAsFactors = FALSE
+)
+
+knitr::kable(consonant_inventory, align = "lcccccc")
+```
+
+::: note
+Source: https://en.wikipedia.org/wiki/Cusco_Quechua
+:::
+
+## Typology
+
+- Quechua is [agglutinative]{.emph}; Spanish is [fusional]{.emph}
+
+- Quechua likes to add [suffixes]{.emph} to express meaning, sort of like Spanish, but there's usually a one-to-one correspondence of morpheme-to-meaning
+
+:::: {.columns}
+
+::: {.column width="50%"}
+[Spanish]{.emph}  
+
+<span style="color:#8c564b;">aún</span>
+<span style="color:#1f77b4;">estoy</span>
+<span style="color:#d62728;">com</span>
+<span style="color:#1f77b4;">iendo</span>
+
+:::
+
+::: {.column width="50%"}
+[Quechua]{.emph}  
+
+<span style="color:#d62728;">mikhu</span>
+<span style="color:#1f77b4;">chka</span>
+<span style="color:#ffbf00;">ni</span>
+<span style="color:#8c564b;">raq</span>
+<span style="color:#17becf;">mi</span>
+:::
+
+::::
 
 ## Morphosyntactic Features
 
@@ -434,22 +605,53 @@ Frequent use of diminutive on nouns, adj, gerunds, numerals, adverbs, pronouns. 
 redundant direct object clitics with nominal referent.
 presence of possesssive determiner with genitive phrase.
 
+## Typology
+
+- Quechua is <span style="color:#8c564b;">s</span><span style="color:#1f77b4;">o</span><span style="color:#d62728;">v</span>; Spanish is <span style="color:#8c564b;">s</span><span style="color:#d62728;">o</span><span style="color:#1f77b4;">v</span>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+[Spanish]{.emph}  
+
+<span style="color:#8c564b;">nosotros</span><span style="color:#d62728;">comemos</span><span style="color:#1f77b4;">carne</span>
+
+:::
+
+::: {.column width="50%"}
+[Quechua]{.emph}  
+
+<span style="color:#8c564b;">ñuqanchik</span><span style="color:#1f77b4;">aychata</span><span style="color:#d62728;">mikhunchik</span>
+:::
+
+::::
+
 ## Patterns of Use
 
-favors adverbials and objects in preverbal position.
-adverbials and prepositional phrases tend to appear utterance-initial.
-frequent use of analytical verbal expressions
-  hacer + infinitive = causative
-  saber + infinitive = habitual aspect
-  dar + gerund = benefactive
-  venir + gerund = perfective
-dequeísmo
+<span style="color:#d62728;">Usqhaylla</span> <span style="color:#1f77b4;">phawarqayku</span>
+
+<span style="color:#1f77b4;">We ran</span> <span style="color:#d62728;">quickly</span>
+
+<span style="color:#d62728;">Kimsa horatam</span> <span style="color:#1f77b4;">mikunchik</span>
+
+<span style="color:#1f77b4;">We eat</span> <span style="color:#d62728;">at three o'clock</span>
+
+::: {.fragment}
+- What might Andean Spanish speakers produce?
+:::
+
+## Patterns of Use
+
+- According to [generativist/usage-based] theories, changes in patterns of use [is]{.emph} reflective of language change
+
+::: {.fragment}
+- What motivates the [generativist]{.emph} belief that patterns of usage [is not]{.emph} reflective of language change?
+- What motivates the [usage-based]{.emph} belief that patterns of usage [is]{.emph} reflective of language change?
+:::
 
 # Focus in Contact {.transition}
 
 ## Pasto, Colombia
-
-Not sure how to incorporate this yet, but so they get an idea of what we're working with in terms of what it sounds like.
 
 {{< youtube udRn6DTwEIk >}}
 
