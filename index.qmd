@@ -177,10 +177,15 @@ mapCountryData(
 :::
 
 ::::
-
 - [Incans]{.emph} conquered much of western South America from the [13th to 16th century]{.emph}
 - [Quechua became lingua franca]{.emph}, in contact with many languages, among them [Aymara]{.emph}
-- Incan elites spoke [extinct Puquina]{.emph} language
+- Inca elites spoke [extinct Puquina]{.emph} language
+
+::: notes
+Quechua = official langues of Incas.
+Incan aristocracy used Puquina, now extinct.
+Prolonged & intense contact of Quechua, Puquina, and Aymara from 13th to 16th century.
+:::
 
 ## Spanish Conquest in Western South America
 
@@ -282,17 +287,11 @@ ggplot() +
 ```
 
 ::: notes
-Quechua = official langues of Incas.
-Incan aristocracy used Puquina, now extinct.
-Prolonged & intense contact of Quechua, Puquina, and Aymara from 13th to 16th century.
-
-During colonial period, Quehcua used as lingua franca.
+During colonial period, Quechua used as lingua franca.
 Of the Spanish, merchants, administrators, and clergymen learned Quechua.
 Of the Andeans, children of indigenous elite, clergymen, & escribanos (helpers) learned Spanish.
 
 Walls constructed in early 17th century to separate Spaniards & indigenous -- very restricted contact.
-
-Andean Spanish is 20th century phenomenon.
 :::
 
 ## Modern Language Policies
@@ -332,8 +331,46 @@ ggplot(policy_events, aes(x = event_date, y = country)) +
 ```
 
 ::: notes
-Indigenous languages are being recognized across LA, but of course there's still a lot of stigma.
+Indigenous languages are being recognized across LATAM, but of course there's still a lot of stigma.
 Despite the gov't language policies to support them, there is still a growing shift from Quechua to Spanish, especially as Quechua speakers move to urban centers.
+:::
+
+## Andean Spanish
+
+::: {.fragment}
+- Andean Spanish is [20th century phenomenon]{.emph}
+- Only two other cases of bilingualism in the Americas: Spanish-English in the US, and French-English in Canada
+:::
+
+::: {.fragment}
+- a [Spanish variety]{.emph} primarily spoken in the [Andean region]{.emph} of various countries spoken by...
+:::
+
+::: {.fragment}
+    - monolingual speakers
+    
+:::
+
+::: {.fragment}
+    - 2L1 bilinguals 
+
+:::
+
+::: {.fragment}
+    - L1 Quechua or L1 Aymara L2 Spanish speakers
+
+:::
+
+:::{.fragment}
+- daily contact with [L2 Andean Spanish]{.emph} speakers
+:::
+
+:::{.fragment}
+- contact with [non-Andean varieties]{.emph} of Spanish
+:::
+
+:::{.fragment}
+- Features that distinguish this dialect from other varieties of Spanish (interlect (A. Escobar 1976, 1978), castellano motoso (Cerrón 1990, 2003))
 :::
 
 ## Andean Spanish Outside of the Andes
@@ -390,35 +427,6 @@ Quechua varieties are spoken in Brooklyn, Queens, and for some reason concentrat
 
 # General Contact Phonema {.transition}
 
-## Andean Spanish
-
-::: {.fragment}
-- a [Spanish variety]{.emph} primarily spoken in the [Andean region]{.emph} of various countries spoken by...
-:::
-
-::: {.fragment}
-    - monolingual speakers
-    
-:::
-
-::: {.fragment}
-    - 2L1 bilinguals 
-
-:::
-
-::: {.fragment}
-    - L1 Quechua or L1 Aymara L2 Spanish speakers
-
-:::
-
-:::{.fragment}
-- daily contact with [L2 Andean Spanish]{.emph} speakers
-:::
-
-:::{.fragment}
-- contact with [non-Andean varieties]{.emph} of Spanish
-:::
-
 ## Let's review some terminology...
 
 - Van Coestem [-@coetsem2000general; -@van2016loan] proposes a psycholinguistic model for borrowing...
@@ -433,6 +441,24 @@ In groups, define the following terms and be prepared to share a [specific conta
 - Agentivity
 - Imposition
 - Borrowing
+:::
+
+::: notes
+All the borrowings and other changes that we'll see have either been identified in at least 2 out of the four main contact areas (Peru, Bolivia, Ecuador and northern Argentina), and/or have not been widely studied
+:::
+
+## The Lexicon
+
+::: {.fragment}
+- Lexical borrowings are common in contact situations, especially [cultural borrowings]{.emph}
+:::
+
+::: {.fragment}
+- Most borrowings entered Spanish during the colonial period, mainly [nouns]{.emph}
+:::
+
+::: {.fragment}
+- We know of them through [chronicles]{.emph} and other documents of the time 
 :::
 
 ## The Lexicon
@@ -489,6 +515,25 @@ data.frame(
 ::: note
 @escobar2011spanish
 :::
+
+::: notes
+Quechua cultural borrowings commonly refer to the flora, fauna, local social organization, food, agriculture, clothing, folklore, and religion
+:::
+
+## Grammatical Borrowing
+
+- Quechua plural marker for nouns, -kuna (2)
+- First person possessive marker (3)
+- The diminutive -cha (4)
+
+![](assgram_borr_1.png)
+
+## Grammatical Borrowing
+
+- The derivative marker used for courtesy -ri (6)
+- The negative emphatic -tan (7)
+
+![](assgram_borr_2.png)
 
 ## The Segmental Inventory of Cusco Quechua
 
@@ -610,12 +655,21 @@ https://en.wikipedia.org/wiki/Cusco_Quechua
 
 ## Morphosyntactic Features
 
-Present example sentences for conditional in protasis/apodosis of conditional sentences
-Skip omission of third person object clitics.
-Animate leísmo
-Frequent use of diminutive on nouns, adj, gerunds, numerals, adverbs, pronouns. use for modesty, deferential courtesy.
-redundant direct object clitics with nominal referent.
-presence of possesssive determiner with genitive phrase.
+- Use of conditional in protasis/apodosis of conditional sentences (8)
+- Omission of third person object clitics (9)
+- Use of animate leísmo (10)
+
+![](morphosynt_1.png)
+
+## Morphosyntactic Features
+
+- Frequent use of diminutive on nouns, adj, gerunds, numerals, adverbs, pronouns (modesty)([corriendito, lejitos, ellita]{.emph})
+- Frequent use of titles with first names ([Doctor Gustavo, Señor Pedro, Licenciado Juan]{.emph})
+- Redundant direct object clitics with nominal referent ([lo visité a mi papá]{.emph})
+
+## Semantic and Discursive Features
+
+- Use of estar + GERUND with the present function ([¿en qué parte de Estados Unidos está viviendo Susana?]{.emph})
 
 ## Typology
 
