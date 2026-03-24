@@ -340,7 +340,7 @@ Despite the gov't language policies to support them, there is still a growing sh
 
 ::: {.fragment}
 - Andean Spanish is [20th century phenomenon]{.emph}
-- Only two other cases of bilingualism in the Americas: Spanish-English in the US, and French-English in Canada
+- Spanish-Quechua has largest number of bilingual speakers after Spanish-English in USA and French-English in Canada [@escobar2011spanish]
 :::
 
 :::{.fragment}
