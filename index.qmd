@@ -108,7 +108,7 @@ quechua_pop_map_object <- joinCountryData2Map(quechua_pop,
                                               nameJoinColumn = "country")
 ```
 
-# The Basics {.transition}
+# Roadmap {.transition}
 
 ## What are we talking about today?
 
@@ -126,15 +126,16 @@ An overview of general contact phenomena [@escobar2011spanish]
 
 ::: {.fragment .fade-up}
 ::: {.fragment .semi-fade-out}
-Contrastive focus in two Peruvian varieties [@o2012realization]
+Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
 :::
 :::
 
 ::: {.fragment .fade-up}
 ::: {.fragment .semi-fade-out}
-Morphosyntactic contact-induced change in Spanish [@sanchez2004functional]
+Contrastive focus in two Peruvian varieties [@o2012realization]
 :::
 :::
+
 
 # History of Quechua-Spanish Contact {.transition}
 
@@ -343,8 +344,7 @@ Despite the gov't language policies to support them, there is still a growing sh
 :::
 
 :::{.fragment}
-- Features that distinguish this dialect from other varieties of Spanish (interlect (A. Escobar 1976, 1978), castellano motoso (Cerrón 1990, 2003))
-[interlect; @escobar1976bilingualism; @escobar1978variaciones], castellano motoso [@@cerron1990aspectos; @cerron2003castellano]
+- Features that distinguish this dialect from other varieties of Spanish [interlect; @escobar1976bilingualism; @escobar1978variaciones], castellano motoso [@cerron1990aspectos; @cerron2003castellano]
 :::
 
 ## Andean Spanish
@@ -464,7 +464,7 @@ All the borrowings and other changes that we'll see have either been identified 
 - We know of them through [chronicles]{.emph} and other documents of the time 
 :::
 
-## The Lexicon
+## The Lexicon {.smaller}
 
 ```{r}
 data.frame(
@@ -515,7 +515,7 @@ data.frame(
 
 ```
 
-::: note
+::: footer
 @escobar2011spanish
 :::
 
@@ -538,7 +538,7 @@ Quechua cultural borrowings commonly refer to the flora, fauna, local social org
 
 ![](assets/gram_borr_2.png)
 
-## The Segmental Inventory of Cusco Quechua
+## The Segmental Inventory of Cusco Quechua {.smaller}
 
 ```{r}
 consonant_inventory <- data.frame(
@@ -618,7 +618,7 @@ consonant_inventory <- data.frame(
 knitr::kable(consonant_inventory, align = "lcccccc")
 ```
 
-::: note
+::: footer
 https://en.wikipedia.org/wiki/Cusco_Quechua
 :::
 
@@ -676,21 +676,21 @@ https://en.wikipedia.org/wiki/Cusco_Quechua
 
 ## Typology
 
-- Quechua is <span style="color:#8c564b;">s</span><span style="color:#1f77b4;">o</span><span style="color:#d62728;">v</span>; Spanish is <span style="color:#8c564b;">s</span><span style="color:#d62728;">o</span><span style="color:#1f77b4;">v</span>
+- Quechua is <span style="color:#8c564b;">s</span><span style="color:#1f77b4;">o</span><span style="color:#d62728;">v</span>; Spanish is <span style="color:#8c564b;">s</span><span style="color:#d62728;">v</span><span style="color:#1f77b4;">o</span>
 
 :::: {.columns}
+
+::: {.column width="50%"}
+[Quechua]{.emph}  
+
+<span style="color:#8c564b;">ñuqanchik</span> <span style="color:#1f77b4;">aychata</span> <span style="color:#d62728;">mikhunchik</span>
+:::
 
 ::: {.column width="50%"}
 [Spanish]{.emph}  
 
 <span style="color:#8c564b;">nosotros</span> <span style="color:#d62728;">comemos</span> <span style="color:#1f77b4;">carne</span>
 
-:::
-
-::: {.column width="50%"}
-[Quechua]{.emph}  
-
-<span style="color:#8c564b;">ñuqanchik</span> <span style="color:#1f77b4;">aychata</span> <span style="color:#d62728;">mikhunchik</span>
 :::
 
 ::::
@@ -711,12 +711,115 @@ https://en.wikipedia.org/wiki/Cusco_Quechua
 
 ## Discuss...
 
-- According to [generativist/usage-based] theories, changes in patterns of use [is]{.emph} reflective of language change
+- According to [generativist?/usage-based?] theories, changes in patterns of use [is]{.emph} reflective of language change
 
 ::: {.fragment}
 - What motivates the [generativist]{.emph} belief that patterns of usage [is not]{.emph} reflective of language change?
 - What motivates the [usage-based]{.emph} belief that patterns of usage [is]{.emph} reflective of language change?
 :::
+
+# Morphosyntax in Contact [@sanchez2004functional] {.transition}
+
+## Functional Convergence Hypothesis (FCH)
+
+::: {.fragment}
+
+- The FCH proposes that languages tend to converge (that is, become more similar) when they share similar functional features, rather than "only" words or sounds
+
+:::
+
+::: {.fragment}
+- How do languages encode meaning through grammar? (tense, agreement, word order, definiteness, etc.)
+:::
+
+::: {.fragment}
+- Goal: do bilinguals keep grammars fully separate or not?
+:::
+
+## Functional Convergence Hypothesis (FCH)
+
+- Possible scenarios:
+
+::: {.fragment}
+    - Languages share the structures, and so reinforce each other (positive transfer)
+    
+:::
+
+::: {.fragment}
+    - Languages have different structures, and so their systems are reshaped
+    
+:::
+
+## The Study
+
+[Research Question]{.emph}: How do bilingual Quechua–Spanish children mix grammatical features across their two languages?
+
+![](assets/sanchez_table1.png)
+
+::: notes
+aspect (sp) vs source of knowledge (qu, evidentiality)
+:::
+
+## Tense in Quechua
+- -rqa = witnessed (direct evidence)
+
+![](assets/rqa.png)
+
+## Tense in Quechua
+
+- -sqa = reported (hearsay)
+
+![](assets/sqa.png)
+
+## Predictions?
+
+If there is convergence, then bilingual speakers will...
+
+::: {.fragment}
+    - Rely more on evidentiality when speaking Spanish
+    
+:::
+
+::: {.fragment}
+    - Rely more on aspect when speaking Quechua
+    
+:::
+
+## Methods. Participants
+
+![](assets/participants.png)
+
+## Methods. Tasks
+- Story re-telling task (both oral and written, although only analyzed oral)
+
+## Results
+
+![](assets/group1.png)
+
+## Results
+
+![](assets/group2.png)
+
+## Discussion
+
+SP-QU bilinguals...
+
+- Begin to encode foreground vs background when speaking Quechua (influence from Spanish)
+- Use tense differently from monolinguals when speaking Spanish (influence from Quechua)
+
+::: notes
+Imperfect & pluperfect used as EVIDENTIAL
+Overuse of imperfect forms
+Present perfect = foreground + evidence
+:::
+
+## Discussion
+
+- Spanish monolinguals: [tense + aspect]{.emph}
+- Spanish in bilinguals: [tense + aspect + evidentiality]{.emph}
+
+- Quechua monolinguals: [tense + evidentiality]{.emph}
+- Quechua bilinguals: [tense + evidentiality + aspect/discourse]{.emph}
 
 # Pragmatics in Contact [@o2012realization] {.transition}
 
@@ -989,109 +1092,6 @@ data.frame(
 - [What more information]{.emph} would we need to decide if this is contact-induced language change?
 
 :::
-
-# Morphosyntax in Contact [@sanchez2004functional] {.transition}
-
-## Functional Convergence Hypothesis (FCH)
-
-::: {.fragment}
-
-- The FCH proposes that languages tend to converge (that is, become more similar) when they share similar functional features, rather than "only" words or sounds
-
-:::
-
-::: {.fragment}
-- How do languages encode meaning through grammar? (tense, agreement, word order, definiteness, etc.)
-:::
-
-::: {.fragment}
-- Goal: do bilinguals keep grammars fully separate or not?
-:::
-
-## Functional Convergence Hypothesis (FCH)
-
-- Possible scenarios:
-
-::: {.fragment}
-    - Languages share the structures, and so reinforce each other (positive transfer)
-    
-:::
-
-::: {.fragment}
-    - Languages have different structures, and so their systems are reshaped
-    
-:::
-
-## The Study
-
-[Research Question]{.emph}: How do bilingual Quechua–Spanish children mix grammatical features across their two languages?
-
-![](assets/sanchez_table1.png)
-
-::: notes
-aspect (sp) vs source of knowledge (qu, evidentiality)
-:::
-
-## Tense in Quechua
-- -rqa = witnessed (direct evidence)
-
-![](assets/rqa.png)
-
-## Tense in Quechua
-
-- -sqa = reported (hearsay)
-
-![](assets/sqa.png)
-
-## Predictions?
-
-If there is convergence, then bilingual speakers will...
-
-::: {.fragment}
-    - Rely more on evidentiality when speaking Spanish
-    
-:::
-
-::: {.fragment}
-    - Rely more on aspect when speaking Quechua
-    
-:::
-
-## Methods. Participants
-
-![](assets/participants.png)
-
-## Methods. Tasks
-- Story re-telling task (both oral and written, although only analyzed oral)
-
-## Results
-
-![](assets/group1.png)
-
-## Results
-
-![](assets/group2.png)
-
-## Discussion
-
-SP-QU bilinguals...
-
-- Begin to encode foreground vs background when speaking Quechua (influence from Spanish)
-- Use tense differently from monolinguals when speaking Spanish (influence from Quechua)
-
-::: notes
-Imperfect & pluperfect used as EVIDENTIAL
-Overuse of imperfect forms
-Present perfect = foreground + evidence
-:::
-
-## Discussion
-
-- Spanish monolinguals: [tense + aspect]{.emph}
-- Spanish in bilinguals: [tense + aspect + evidentiality]{.emph}
-
-- Quechua monolinguals: [tense + evidentiality]{.emph}]
-- Quechua bilinguals: [tense + evidentiality + aspect/discourse]{.emph}]
 
 
 ## Thanks! {.final visibility="uncounted"}
