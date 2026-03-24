@@ -342,6 +342,13 @@ Despite the gov't language policies to support them, there is still a growing sh
 - Only two other cases of bilingualism in the Americas: Spanish-English in the US, and French-English in Canada
 :::
 
+:::{.fragment}
+- Features that distinguish this dialect from other varieties of Spanish (interlect (A. Escobar 1976, 1978), castellano motoso (Cerrón 1990, 2003))
+[interlect; @escobar1976bilingualism; @escobar1978variaciones], castellano motoso [@@cerron1990aspectos; @cerron2003castellano]
+:::
+
+## Andean Spanish
+
 ::: {.fragment}
 - a [Spanish variety]{.emph} primarily spoken in the [Andean region]{.emph} of various countries spoken by...
 :::
@@ -367,10 +374,6 @@ Despite the gov't language policies to support them, there is still a growing sh
 
 :::{.fragment}
 - contact with [non-Andean varieties]{.emph} of Spanish
-:::
-
-:::{.fragment}
-- Features that distinguish this dialect from other varieties of Spanish (interlect (A. Escobar 1976, 1978), castellano motoso (Cerrón 1990, 2003))
 :::
 
 ## Andean Spanish Outside of the Andes
@@ -526,14 +529,14 @@ Quechua cultural borrowings commonly refer to the flora, fauna, local social org
 - First person possessive marker (3)
 - The diminutive -cha (4)
 
-![](assgram_borr_1.png)
+![](assets/gram_borr_1.png)
 
 ## Grammatical Borrowing
 
 - The derivative marker used for courtesy -ri (6)
 - The negative emphatic -tan (7)
 
-![](assgram_borr_2.png)
+![](assets/gram_borr_2.png)
 
 ## The Segmental Inventory of Cusco Quechua
 
@@ -623,6 +626,24 @@ https://en.wikipedia.org/wiki/Cusco_Quechua
 
 ![](assets/andean_spanish.mp4)
 
+## Morphosyntactic Features
+
+- Use of conditional in protasis/apodosis of conditional sentences (8)
+- Omission of third person object clitics (9)
+- Use of animate leísmo (10)
+
+![](assets/morphosynt_1.png)
+
+## Morphosyntactic Features
+
+- Frequent use of diminutive on nouns, adj, gerunds, numerals, adverbs, pronouns (modesty)([corriendito, lejitos, ellita]{.emph})
+- Frequent use of titles with first names ([Doctor Gustavo, Señor Pedro, Licenciado Juan]{.emph})
+- Redundant direct object clitics with nominal referent ([lo visité a mi papá]{.emph})
+
+## Semantic and Discursive Features
+
+- Use of estar + GERUND with the present function ([¿en qué parte de Estados Unidos está viviendo Susana?]{.emph})
+
 ## Typology
 
 - Quechua is [agglutinative]{.emph}; Spanish is [fusional]{.emph}
@@ -652,24 +673,6 @@ https://en.wikipedia.org/wiki/Cusco_Quechua
 :::
 
 ::::
-
-## Morphosyntactic Features
-
-- Use of conditional in protasis/apodosis of conditional sentences (8)
-- Omission of third person object clitics (9)
-- Use of animate leísmo (10)
-
-![](morphosynt_1.png)
-
-## Morphosyntactic Features
-
-- Frequent use of diminutive on nouns, adj, gerunds, numerals, adverbs, pronouns (modesty)([corriendito, lejitos, ellita]{.emph})
-- Frequent use of titles with first names ([Doctor Gustavo, Señor Pedro, Licenciado Juan]{.emph})
-- Redundant direct object clitics with nominal referent ([lo visité a mi papá]{.emph})
-
-## Semantic and Discursive Features
-
-- Use of estar + GERUND with the present function ([¿en qué parte de Estados Unidos está viviendo Susana?]{.emph})
 
 ## Typology
 
@@ -988,6 +991,108 @@ data.frame(
 :::
 
 # Morphosyntax in Contact [@sanchez2004functional] {.transition}
+
+## Functional Convergence Hypothesis (FCH)
+
+::: {.fragment}
+
+- The FCH proposes that languages tend to converge (that is, become more similar) when they share similar functional features, rather than "only" words or sounds
+
+:::
+
+::: {.fragment}
+- How do languages encode meaning through grammar? (tense, agreement, word order, definiteness, etc.)
+:::
+
+::: {.fragment}
+- Goal: do bilinguals keep grammars fully separate or not?
+:::
+
+## Functional Convergence Hypothesis (FCH)
+
+- Possible scenarios:
+
+::: {.fragment}
+    - Languages share the structures, and so reinforce each other (positive transfer)
+    
+:::
+
+::: {.fragment}
+    - Languages have different structures, and so their systems are reshaped
+    
+:::
+
+## The Study
+
+[Research Question]{.emph}: How do bilingual Quechua–Spanish children mix grammatical features across their two languages?
+
+![](assets/sanchez_table1.png)
+
+::: notes
+aspect (sp) vs source of knowledge (qu, evidentiality)
+:::
+
+## Tense in Quechua
+- -rqa = witnessed (direct evidence)
+
+![](assets/rqa.png)
+
+## Tense in Quechua
+
+- -sqa = reported (hearsay)
+
+![](assets/sqa.png)
+
+## Predictions?
+
+If there is convergence, then bilingual speakers will...
+
+::: {.fragment}
+    - Rely more on evidentiality when speaking Spanish
+    
+:::
+
+::: {.fragment}
+    - Rely more on aspect when speaking Quechua
+    
+:::
+
+## Methods. Participants
+
+![](assets/participants.png)
+
+## Methods. Tasks
+- Story re-telling task (both oral and written, although only analyzed oral)
+
+## Results
+
+![](assets/group1.png)
+
+## Results
+
+![](assets/group2.png)
+
+## Discussion
+
+SP-QU bilinguals...
+
+- Begin to encode foreground vs background when speaking Quechua (influence from Spanish)
+- Use tense differently from monolinguals when speaking Spanish (influence from Quechua)
+
+::: notes
+Imperfect & pluperfect used as EVIDENTIAL
+Overuse of imperfect forms
+Present perfect = foreground + evidence
+:::
+
+## Discussion
+
+- Spanish monolinguals: [tense + aspect]{.emph}
+- Spanish in bilinguals: [tense + aspect + evidentiality]{.emph}
+
+- Quechua monolinguals: [tense + evidentiality]{.emph}]
+- Quechua bilinguals: [tense + evidentiality + aspect/discourse]{.emph}]
+
 
 ## Thanks! {.final visibility="uncounted"}
 
